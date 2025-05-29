@@ -1,57 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 240 20% 96%; /* PRD: #F3F3F9 */
+    --foreground: 210 11% 15%; /* PRD: #212529 (primaryText) */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%; /* PRD: #FFFFFF (surface) */
+    --card-foreground: 210 11% 15%; /* PRD: #212529 */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%; /* PRD: #FFFFFF (surface) */
+    --popover-foreground: 210 11% 15%; /* PRD: #212529 */
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 202 72% 51%; /* PRD: #299CDB (accentBlue) */
+    --primary-foreground: 0 0% 100%; /* White for contrast with accentBlue */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 14% 93%; /* PRD: #E9ECEF (used as a general secondary bg, similar to sidebar) */
+    --secondary-foreground: 210 11% 15%; /* PRD: #212529 (primaryText on secondary bg) */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 14% 93%; /* Using a light gray like #E9ECEF for muted backgrounds */
+    --muted-foreground: 228 9% 57%; /* PRD: #878A99 (secondaryText) */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 170 89% 37%; /* PRD: #0AB39C (accentGreen) */
+    --accent-foreground: 0 0% 100%; /* White for contrast with accentGreen */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 10 86% 61%; /* PRD: #F06548 (accentRed) */
+    --destructive-foreground: 0 0% 100%; /* White for contrast with accentRed */
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 216 11% 92%; /* PRD: #E9EBEC */
+    --input: 216 11% 92%; /* PRD: #E9EBEC (same as border) */
+    --ring: 202 72% 51%; /* PRD: #299CDB (accentBlue for focus rings) */
 
-    --radius: 0.5rem;
+    --radius: 0.375rem; /* PRD: effects.borderRadius.default "rounded-md" (Tailwind's md is 0.375rem or 6px) */
 
-    --sidebar-background: 0 0% 98%;
+    --font-sans: 'Nunito';
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Sidebar specific variables based on PRD and image interpretation */
+    --sidebar-background: 210 14% 93%;      /* PRD: #E9ECEF (sidebar) */
+    --sidebar-foreground: 210 11% 15%;      /* PRD: #212529 (primaryText) for sidebar text */
+    --sidebar-primary: 202 72% 51%;         /* PRD: #299CDB (accentBlue) for active item text/icon color */
+    --sidebar-primary-foreground: 0 0% 100%; /* White, e.g., if --sidebar-primary were a background */
+    --sidebar-accent: 202 72% 95%;          /* Light blue (hsl of #299CDB with L=95%) for active item background */
+    --sidebar-accent-foreground: 202 72% 51%;/* PRD: #299CDB (accentBlue) for text on active item background */
+    --sidebar-border: 216 11% 92%;          /* PRD: #E9EBEC (border) */
+    --sidebar-ring: 202 72% 51%;            /* PRD: #299CDB (accentBlue) for focus */
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Custom application specific colors from PRD */
+    --app-accent-yellow: 51 100% 50%;       /* PRD: #FFD700 (accentYellow) */
+    --app-accent-yellow-foreground: 210 11% 15%; /* PRD: #212529 (primaryText) for text on yellow */
   }
 
   .dark {
+    /* PRD does not specify dark theme, preserving original dark theme variables */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -79,6 +82,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    /* Preserving original sidebar dark theme variables */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -87,15 +91,20 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
 
-@layer base {
+    /* Custom app vars in dark mode - PRD does not specify, so these are not set for dark mode */
+    /* --app-accent-yellow: ...; */
+    /* --app-accent-yellow-foreground: ...; */
+  }
+
   * {
-    @apply border-border;
+    @apply border-border; /* Uses Tailwind 'border' color which maps to hsl(var(--border)) */
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground; /* Uses Tailwind 'background' and 'foreground' colors */
+    font-family: var(--font-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
