@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -41,7 +42,7 @@ export default {
 					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
+					DEFAULT: 'hsl(var(--accent))', /* Mapped to PRD accentGreen */
 					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
@@ -61,13 +62,26 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        /* Custom application specific colors from PRD */
+        'app-accent-yellow': {
+          DEFAULT: 'hsl(var(--app-accent-yellow))',
+          foreground: 'hsl(var(--app-accent-yellow-foreground))'
+        }
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+        /* PRD: default "rounded-md" (0.375rem), buttons "rounded" (0.25rem) */
+				lg: 'var(--radius)', /* 0.375rem */
+				md: 'var(--radius)', /* 0.375rem */
+				sm: 'calc(var(--radius) - 2px)' /* 0.375rem - 2px ~ 0.25rem (4px) */
 			},
+      fontFamily: {
+        sans: ['var(--font-sans)', ...fontFamily.sans], /* PRD: Nunito */
+      },
+      boxShadow: {
+        DEFAULT: '0 1px 2px 0 rgb(0 0 0 / 0.05)', /* PRD: effects.shadows.default "shadow-sm" */
+        sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)', /* Tailwind's shadow-sm */
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
